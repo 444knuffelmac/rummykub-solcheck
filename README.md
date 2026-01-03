@@ -1,7 +1,7 @@
 # rummikub sol(vability)check(er)
 python project checking if the position is able to be solved in rumikub
 rumikub pieces:
-1-13 in 4 colors --> yellow-black-yellow-red OR green,red,black,blue OR (in the older version (still has the colors but with the symbols of normal cards)
+1-13 in 4 colors --> yellow-black-blue-red OR green,red,black,blue OR (in the older version (still has the colors but with the symbols of normal cards)
 2 jokers (we for some reason have more(8) but for the beginning this is enough)
 rules:
 
