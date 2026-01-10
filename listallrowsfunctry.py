@@ -7,7 +7,12 @@ def sortstringly(pscolornumber):
     for x in range(len(pscolorstring)):
         pscolornumber2.append(int(pscolorstring[x]))
     return pscolornumber2
-
+def reversenumber(number):
+    stringnumber = str(number)
+    flippednumber = int(stringnumber[::-1])
+    if len(stringnumber) ==2:
+        return flippednumber*10
+    return flippednumber
 def whatvalueshaveneighboursbothtypes(pscolornumber):
     pscolornumberalt = sortstringly(pscolornumber)  # presort for the other one
     print(pscolornumber)
@@ -45,94 +50,94 @@ def whatvalueshaveneighboursbothtypes(pscolornumber):
         number = pscolornumberalt[i]
         if number == 0:
             continue
-        if number % 100 == 1:
+        if number % 10 == 1:
             if i+2 < len(pscolornumberalt):
                 if i + 1 < len(pscolornumberalt):
                     if number + 1 == pscolornumberalt[i + 1] or number+1 == pscolornumberalt[i+2]:
-                        withneighbourstype2.append(number)
+                        withneighbourstype2.append(reversenumber(number))
                         continue
                     if number + 2 == pscolornumberalt[i + 1] or number+2 == pscolornumberalt[i+2]:
-                        withneighbourstype2.append(number)
+                        withneighbourstype2.append(reversenumber(number))
                         continue
                     if number + 3 == pscolornumberalt[i + 1] or number+3 == pscolornumberalt[i+2]:
-                        withneighbourstype2.append(number)
+                        withneighbourstype2.append(reversenumber(number))
                         continue
             elif i+1 < len(pscolornumberalt):
                 if number + 1 == pscolornumberalt[i+1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number+2 == pscolornumberalt[i+1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number+3 == pscolornumberalt[i+1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
-        elif number%100 == 2:
+        elif number%10 == 2:
             if i+2 < len(pscolornumberalt):
                 if number + 1 == pscolornumberalt[i + 1] or number + 1 == pscolornumberalt[i + 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number + 2 == pscolornumberalt[i + 1] or number + 2 == pscolornumberalt[i + 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
             elif i+1 < len(pscolornumberalt):
                 if number + 1 == pscolornumberalt[i+1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number+2 == pscolornumberalt[i+1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
             if 1<i:
                 if number - 1 == pscolornumberalt[i - 1] or number - 1 == pscolornumberalt[i - 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
             elif 0<i:
                 if number - 1 == pscolornumberalt[i-1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
-        elif number%100 == 3:
+        elif number%10 == 3:
             if i+2 < len(pscolornumberalt):
                 if number + 1 == pscolornumberalt[i + 1] or number + 1 == pscolornumberalt[i + 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
             elif i+1 < len(pscolornumberalt):
                 if number + 1 == pscolornumberalt[i+1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
             if 1 < i:
                 if number - 1 == pscolornumberalt[i - 1] or number - 1 == pscolornumberalt[i - 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number - 2 == pscolornumberalt[i - 1] or number - 2 == pscolornumberalt[i - 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
             elif 0 < i:
                 if number - 1 == pscolornumberalt[i - 1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number - 2 == pscolornumberalt[i - 1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
         else:
             if 1 < i:
                 if number - 1 == pscolornumberalt[i - 1] or number - 1 == pscolornumberalt[i - 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number - 2 == pscolornumberalt[i - 1] or number - 2 == pscolornumberalt[i - 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number - 3 == pscolornumberalt[i - 1] or number - 3 == pscolornumberalt[i - 2]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
             elif 0 < i:
                 if number - 1 == pscolornumberalt[i - 1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number - 2 == pscolornumberalt[i - 1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
                 if number - 3 == pscolornumberalt[i - 1]:
-                    withneighbourstype2.append(number)
+                    withneighbourstype2.append(reversenumber(number))
                     continue
 
     return withneighbourstype1, withneighbourstype2
@@ -148,6 +153,6 @@ def whatvalueshaveneighboursbothtypes(pscolornumber):
     jokeramount = pscolornumber.count(0)
     if jokeramount == 0:'''
 
-n,o = whatvalueshaveneighboursbothtypes([101,102,104,301])
+n,o = whatvalueshaveneighboursbothtypes([110,110,112,112,113,113,104,310])
 print(n)
 print(o)
