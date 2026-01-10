@@ -27,4 +27,25 @@
 6: derde filter:
   als er 0 jokers zijn:
     als er bij de 3 tile rijen 1 getal niet in zit, is het niet mogelijk
-7:
+7: een lijst die bijhoud hoeveel van elk getal er voorkomt (0/1/2)
+  soort van lib
+
+
+
+simpel uitgelegd:
+stap 1 maakt 2 lijsten, waar tiles  instaan die minimum 1 buur hebben
+stap 2 kijkt bij 0 jokers of er een tile  niet in 1 van de 2 lijsten staat, want dan kan het niet
+stap 3 alleen bij 1 of meer jokers: maakt een lijst met alle tiles die geen dichte buren hebben, maar wel buren met 1 tile tussen de 2 (dus bv 1j3).
+stap 4 alleen bij 1 joker: kijkt of een getal niet in 1 van de 3 lijsten staat, als dat zo is, kan het niet allemaal gelegd worden
+stap 5 vormt alle mogelijke unieke 3 tile combinaties, exclusief jokers
+stap 6 kijkt bij 0 jokers of 1 getal daar niet instaat, want als er 1 getal daar niet instaat, kan dit niet
+
+wat zou dit al filtreren:
+theoretisch onmogelijke games bij 0 en 1 joker(s)
+
+nog niet gefiltreerd:
+praktisch onmogelijke games bij alle variaties
+
+wat moet er gebeuren voor alles te kunnen filtreren (vast traag maar gaat nrml werken):
+  een stap/meerdere stappen die  
+
