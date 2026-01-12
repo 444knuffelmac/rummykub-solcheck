@@ -1,8 +1,8 @@
-1: neighbourchecker:
-  kijken of een bepaald getal een buur heeft of niet
-2: eerste filter:
-  kijken of er 0 jokers zijn:
-    kijken of ieder getal een buur heeft of niet, zoniet kan het fysiek niet bij 0 jokers.
+1: neighbourchecker: V
+  kijken of een bepaald getal een buur heeft of niet V
+2: eerste filter: V
+  kijken of er 0 jokers zijn: V
+    kijken of ieder getal een buur heeft of niet, zoniet kan het fysiek niet bij 0 jokers. V
 3: extended neighbourchecker
   als er 1+ joker(s) is(zijn):
     probeert te kijken bij de buurlozen, of ze door 1 joker ertussen te plaatsen, theoretisch kunnen gelegd worden
@@ -34,8 +34,8 @@
 6: derde filter:
   als er 0 jokers zijn:
     als er bij de 3 tile rijen 1 getal niet in zit, is het niet mogelijk
-7: een lijst die bijhoud hoeveel van elk getal er voorkomt (1/2)
-  soort van lib
+7: een lijst die bijhoud hoeveel van elk getal er voorkomt (1/2) V
+  soort van lib --> array gekozen V
 
 
 

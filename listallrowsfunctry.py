@@ -152,7 +152,37 @@ def whatvalueshaveneighboursbothtypes(pscolornumber):
     #checks for jokers
     jokeramount = pscolornumber.count(0)
     if jokeramount == 0:'''
+def frequentielist(pscolornumber):
+    uniquenumbers = []
+    frequencienumbers = []
+    tempvalue = []
+    for i in range(len(pscolornumber)):
+        number = pscolornumber[i]
+        if not number in uniquenumbers:
+            uniquenumbers.append(number)
+    for i in range(len(uniquenumbers)):
+        number = uniquenumbers[i]
+        tempvalue.append(number)
+        tempvalue.append(pscolornumber.count(number))
+        frequencienumbers.append(tempvalue)
+        tempvalue = []
 
-n,o = whatvalueshaveneighboursbothtypes([110,110,112,112,113,113,104,310])
+    return uniquenumbers, frequencienumbers
+
+def firstfilter(withneighbourstype1,withneighbourstype2,uniquenumbers):
+    stillpossible = True
+    if not 0 in uniquenumbers:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
+            if not number in withneighbourstype1 and not number in withneighbourstype2:
+                stillpossible = False
+    return stillpossible
+
+piecescolornumber = [110,110,112,112,113,113,104,310]
+uniquenumber,frequencienumber = frequentielist(piecescolornumber)
+n,o = whatvalueshaveneighboursbothtypes(uniquenumber)
+stillpos = firstfilter(n,o,uniquenumber)
+print(uniquenumber)
 print(n)
 print(o)
+print(stillpos)
