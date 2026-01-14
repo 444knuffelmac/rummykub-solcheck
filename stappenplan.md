@@ -3,7 +3,7 @@
 2: eerste filter: V
   kijken of er 0 jokers zijn: V
     kijken of ieder getal een buur heeft of niet, zoniet kan het fysiek niet bij 0 jokers. V
-3: extended neighbourchecker
+3: extended neighbourchecker V
   als er 1+ joker(s) is(zijn):
     probeert te kijken bij de buurlozen, of ze door 1 joker ertussen te plaatsen, theoretisch kunnen gelegd worden
     voorbeeld: blauwe 1, blauwe 3, blauwe 4, joker --> 3 en 4 zijn buren, 1 is buurloos, we hebben 1 joker, dus we kunnen hier geraken.
@@ -12,7 +12,7 @@
       zou je de 1 wel een buur kunnen geven:
         1x3? --> mogelijk
       DEZE CHECKER IS ALLEEN VOOR ZELFDE KLEUR (voor zelfde cijfer ander kleur wordt al naar elke buur gekeken, dus gaat dit geen impact hebben, en dus nutteloos zijn)
-4: tweede filter
+4: tweede filter V
   als er 1 joker is:
     kijkt of ieder getal in 1 van de drie lijsten staat (buren1,buren2 of verre buren)
       als er 1 getal niet in de drie lijsten staat, kan dit niet opgelost worden.

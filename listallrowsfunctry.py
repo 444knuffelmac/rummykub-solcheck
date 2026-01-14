@@ -169,19 +169,57 @@ def frequentielist(pscolornumber):
 
     return uniquenumbers, frequencienumbers
 
-def firstfilter(withneighbourstype1,withneighbourstype2,uniquenumbers):
+def firstfilter(noneighbours,uniquenumbers):
     stillpossible = True
     if not 0 in uniquenumbers:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if not number in withneighbourstype1 and not number in withneighbourstype2:
-                stillpossible = False
+        if len(noneighbours) > 0:
+            stillpossible = False
     return stillpossible
-
+def jokercount(pscolornumber):
+    return pscolornumber.count(0)
+def neighbourless(uniquenumbers,withneighbourstype1,withneighbourstype2):
+    noneighbours = uniquenumbers
+    for i in range(len(noneighbours)):
+        if noneighbours[i] in withneighbourstype1 or noneighbours[i] in withneighbourstype2:
+            noneighbours.remove(noneighbours[i])
+    return noneighbours
+def extendedneighbours(uniquenumbers,jokercounted,noneighbours):
+    extendedneighbour = []
+    if jokercounted > 0:
+        for i in range(len(noneighbours)):
+            number = noneighbours[i]
+            if i < 2:
+                if i > len(noneighbours) - 3:
+                    continue
+                if number + 2 in uniquenumbers:
+                    extendedneighbour.append(number)
+                    continue
+            if i > len(noneighbours) - 3:
+                if number - 2 in uniquenumbers:
+                    extendedneighbour.append(number)
+                    continue
+            if number - 2 in uniquenumbers or number+2 in uniquenumbers:
+                extendedneighbour.append(number)
+    return extendedneighbour
+def secondfilter(noneighbours,extendedneighbour,jokercounted):
+    possible = True
+    if len(extendedneighbour) > (jokercounted*2)+1:
+        possible = False
+    if jokercounted == 1:
+        for i in range(len(noneighbours)):
+            number = noneighbours[i]
+            if number in extendedneighbour:
+                continue
+            else:
+                possible = False
+    return possible
 piecescolornumber = [110,110,112,112,113,113,104,310]
+amountofjokers = jokercount(piecescolornumber)
 uniquenumber,frequencienumber = frequentielist(piecescolornumber)
 n,o = whatvalueshaveneighboursbothtypes(uniquenumber)
-stillpos = firstfilter(n,o,uniquenumber)
+neighbourlessnumbers = neighbourless(uniquenumber,n,o)
+stillpos = firstfilter(neighbourlessnumbers,uniquenumber)
+farneighbours = extendedneighbours(uniquenumber,amountofjokers,neighbourlessnumbers)
 print(uniquenumber)
 print(n)
 print(o)
