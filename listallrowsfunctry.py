@@ -213,6 +213,39 @@ def secondfilter(noneighbours,extendedneighbour,jokercounted):
             else:
                 possible = False
     return possible
+def makeallthreetilerows(uniquenumbers,jokercounted):
+    threetilerows = []
+    for i in range(len(uniquenumbers)):
+        number = uniquenumbers[i]
+        '''blauwe 3 kan --> 1,2,3 blauw
+                            2,3,4 blauw
+                            3,4,5 blauw
+                            103,203,303
+                            203,303,403
+                            103,303,403
+                            x3 voor jokers die die plaatsen kunnen innemen
+                            (alleen 3 blauw is geforceerd om erin te zitten)
+                            maximaal variaties zijn 18
+                            MAAR alle normale posities waar b3 niet voraan staat mogen weg
+                            
+                            3,4,5 blauw -> enige zonder joker (rest waarde lager dan deze dus dan zitten ze er al in)
+                            j,3,4 blauw
+                            3,4,j blauw
+                            3, j, 5 blauw
+                            j,303,403 
+                            j,j,3
+                            j,3,j
+                            3,j,j               
+                            '''
+        if jokercounted == 0:
+            if i <2:
+                if i == 0:
+
+                else:
+
+
+
+
 piecescolornumber = [110,110,112,112,113,113,104,310]
 amountofjokers = jokercount(piecescolornumber)
 uniquenumber,frequencienumber = frequentielist(piecescolornumber)
