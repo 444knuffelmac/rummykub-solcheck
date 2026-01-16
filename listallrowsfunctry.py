@@ -178,10 +178,11 @@ def firstfilter(noneighbours,uniquenumbers):
 def jokercount(pscolornumber):
     return pscolornumber.count(0)
 def neighbourless(uniquenumbers,withneighbourstype1,withneighbourstype2):
-    noneighbours = uniquenumbers
-    for i in range(len(noneighbours)):
-        if noneighbours[i] in withneighbourstype1 or noneighbours[i] in withneighbourstype2:
-            noneighbours.remove(noneighbours[i])
+    noneighbours = []
+    for i in range(len(uniquenumbers)):
+        if not((uniquenumbers[i] in withneighbourstype1) or (uniquenumbers[i] in withneighbourstype2)):
+            print(uniquenumbers[i])
+            noneighbours.append(uniquenumbers[i])
     return noneighbours
 def extendedneighbours(uniquenumbers,jokercounted,noneighbours):
     extendedneighbour = []
@@ -238,22 +239,72 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
                             3,j,j               
                             '''
         if jokercounted == 0:
-            if i <2:
-                if i == 0:
+            if i > uniquenumbers.len()-3:
+                continue
+            if number+1 in uniquenumbers:
+                if number+2 in uniquenumbers:
+                    threetilerows.append([number,number+1,number+2])
+            if number+100 in uniquenumbers:
+                if number+200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number+300 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 300])
+            if number+200 in uniquenumbers:
+                if number+300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
+        elif jokercounted == 1:
+            if i > uniquenumbers.len()-2:
+                continue
+            if number+1 in uniquenumbers:
+                threetilerows.append([number,number+1,0])
+                if number+2 in uniquenumbers:
+                    threetilerows.append([number, 0, number + 2])
+                    threetilerows.append([number,number+1,number+2])
+            if number+100 in uniquenumbers:
+                threetilerows.append([number, number + 100, 0])
+                if number+200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number+300 in uniquenumbers:
+                    threetilerows.append([number, 0, number+300])
+                    threetilerows.append([number, number + 100, number + 300])
+            if number+200 in uniquenumbers:
+                threetilerows.append([number, 0,number + 200])
+                if number+300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
 
-                else:
+        else:
+            threetilerows.append([number, 0, 0])
+            if number+1 in uniquenumbers:
+                threetilerows.append([number,number+1,0])
+                if number+2 in uniquenumbers:
+                    threetilerows.append([number, 0, number + 2])
+                    threetilerows.append([number,number+1,number+2])
+            if number+100 in uniquenumbers:
+                threetilerows.append([number, number + 100, 0])
+                if number+200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number+300 in uniquenumbers:
+                    threetilerows.append([number, 0, number+300])
+                    threetilerows.append([number, number + 100, number + 300])
+            if number+200 in uniquenumbers:
+                threetilerows.append([number, 0,number + 200])
+                if number+300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
+    return threetilerows
 
 
 
 
-piecescolornumber = [110,110,112,112,113,113,104,310]
+piecescolornumber = [110,110,111,112,112,113,113,104,310]
 amountofjokers = jokercount(piecescolornumber)
 uniquenumber,frequencienumber = frequentielist(piecescolornumber)
 n,o = whatvalueshaveneighboursbothtypes(uniquenumber)
 neighbourlessnumbers = neighbourless(uniquenumber,n,o)
 stillpos = firstfilter(neighbourlessnumbers,uniquenumber)
 farneighbours = extendedneighbours(uniquenumber,amountofjokers,neighbourlessnumbers)
+threetilerows = makeallthreetilerows(uniquenumber,jokercount)
 print(uniquenumber)
 print(n)
 print(o)
 print(stillpos)
+print(threetilerows)
