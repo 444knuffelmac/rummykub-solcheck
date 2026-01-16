@@ -216,8 +216,24 @@ def secondfilter(noneighbours,extendedneighbour,jokercounted):
     return possible
 def makeallthreetilerows(uniquenumbers,jokercounted):
     threetilerows = []
-    for i in range(len(uniquenumbers)):
-        number = uniquenumbers[i]
+    if jokercounted == 0:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
+            if i > uniquenumbers.len() - 3:
+                continue
+
+            if number + 1 in uniquenumbers:
+                if number + 2 in uniquenumbers:
+                    threetilerows.append([number, number + 1, number + 2])
+            if number + 100 in uniquenumbers:
+                if number + 200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number + 300 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 300])
+            if number + 200 in uniquenumbers:
+                if number + 300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
+
         '''blauwe 3 kan --> 1,2,3 blauw
                             2,3,4 blauw
                             3,4,5 blauw
@@ -238,22 +254,11 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
                             j,3,j
                             3,j,j               
                             '''
-        if jokercounted == 0:
-            if i > uniquenumbers.len()-3:
-                continue
-            if number+1 in uniquenumbers:
-                if number+2 in uniquenumbers:
-                    threetilerows.append([number,number+1,number+2])
-            if number+100 in uniquenumbers:
-                if number+200 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 200])
-                if number+300 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 300])
-            if number+200 in uniquenumbers:
-                if number+300 in uniquenumber:
-                    threetilerows.append([number, number + 200, number + 300])
-        elif jokercounted == 1:
-            if i > uniquenumbers.len()-2:
+
+    elif jokercounted == 1:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
+            if i == uniquenumbers.len()-1:
                 continue
             if number+1 in uniquenumbers:
                 threetilerows.append([number,number+1,0])
@@ -272,7 +277,100 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
                 if number+300 in uniquenumber:
                     threetilerows.append([number, number + 200, number + 300])
 
-        else:
+    else:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
+            threetilerows.append([number, 0, 0])
+            if number+1 in uniquenumbers:
+                threetilerows.append([number,number+1,0])
+                if number+2 in uniquenumbers:
+                    threetilerows.append([number, 0, number + 2])
+                    threetilerows.append([number,number+1,number+2])
+            if number+100 in uniquenumbers:
+                threetilerows.append([number, number + 100, 0])
+                if number+200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number+300 in uniquenumbers:
+                    threetilerows.append([number, 0, number+300])
+                    threetilerows.append([number, number + 100, number + 300])
+            if number+200 in uniquenumbers:
+                threetilerows.append([number, 0,number + 200])
+                if number+300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
+    return threetilerows
+def thirthfilter(uniquenumbers,threetilerows):
+    notinit = False
+    for i in uniquenumbers:
+        number = uniquenumbers[i]
+        if not (number in threetilerows):
+            notinit = True
+            break
+    return notinit
+
+def makeallfourtilerows(uniquenumbers,jokercounted):
+    fourtilerows = []
+    if jokercounted == 0:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
+            if i > uniquenumbers.len() - 4:
+                continue
+
+            if number + 1 in uniquenumbers:
+                if number + 2 in uniquenumbers:
+                    threetilerows.append([number, number + 1, number + 2])
+            if number + 100 in uniquenumbers:
+                if number + 200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number + 300 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 300])
+            if number + 200 in uniquenumbers:
+                if number + 300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
+    elif jokercounted == 1:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
+            if i > uniquenumbers.len()-3:
+                continue
+            if number+1 in uniquenumbers:
+                threetilerows.append([number,number+1,0])
+                if number+2 in uniquenumbers:
+                    threetilerows.append([number, 0, number + 2])
+                    threetilerows.append([number,number+1,number+2])
+            if number+100 in uniquenumbers:
+                threetilerows.append([number, number + 100, 0])
+                if number+200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number+300 in uniquenumbers:
+                    threetilerows.append([number, 0, number+300])
+                    threetilerows.append([number, number + 100, number + 300])
+            if number+200 in uniquenumbers:
+                threetilerows.append([number, 0,number + 200])
+                if number+300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
+    elif jokercounted == 2:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
+            if i == uniquenumbers.len()-1:
+                continue
+            if number+1 in uniquenumbers:
+                threetilerows.append([number,number+1,0])
+                if number+2 in uniquenumbers:
+                    threetilerows.append([number, 0, number + 2])
+                    threetilerows.append([number,number+1,number+2])
+            if number+100 in uniquenumbers:
+                threetilerows.append([number, number + 100, 0])
+                if number+200 in uniquenumbers:
+                    threetilerows.append([number, number + 100, number + 200])
+                if number+300 in uniquenumbers:
+                    threetilerows.append([number, 0, number+300])
+                    threetilerows.append([number, number + 100, number + 300])
+            if number+200 in uniquenumbers:
+                threetilerows.append([number, 0,number + 200])
+                if number+300 in uniquenumber:
+                    threetilerows.append([number, number + 200, number + 300])
+    else:
+        for i in range(len(uniquenumbers)):
+            number = uniquenumbers[i]
             threetilerows.append([number, 0, 0])
             if number+1 in uniquenumbers:
                 threetilerows.append([number,number+1,0])
@@ -292,7 +390,12 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
                     threetilerows.append([number, number + 200, number + 300])
     return threetilerows
 
+    return threetilerows
+def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (otherwise it can be saved as 3+3) --> 1xxx5 is the last
+    #time jokers are usefull in that way, as it reduces it from 4 jokers to 3 jokers needed.
 
+
+def trysolveit(jokercounted,threetilerows):
 
 
 piecescolornumber = [110,110,111,112,112,113,113,104,310]
@@ -302,9 +405,9 @@ n,o = whatvalueshaveneighboursbothtypes(uniquenumber)
 neighbourlessnumbers = neighbourless(uniquenumber,n,o)
 stillpos = firstfilter(neighbourlessnumbers,uniquenumber)
 farneighbours = extendedneighbours(uniquenumber,amountofjokers,neighbourlessnumbers)
-threetilerows = makeallthreetilerows(uniquenumber,jokercount)
+threetilerow = makeallthreetilerows(uniquenumber,jokercount)
 print(uniquenumber)
 print(n)
 print(o)
 print(stillpos)
-print(threetilerows)
+print(threetilerow)

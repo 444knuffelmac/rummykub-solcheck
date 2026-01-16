@@ -23,7 +23,7 @@
   als er meer dan 1 joker is:
     kijk of lengte lijst verre buren > jokeramount*2, dan kan het niet opgelost worden
       
-5: alle mogelijke unieke 3 tile rijen vormen:
+5: alle mogelijke unieke 3 tile rijen vormen: V
     ALS ER EEN RIJ GEVONDEN IS, HERHAAL DAT GETAL TOT ER GEEN NIEUWE UNIEKE RIJEN MEER ZIJN
     nummers verschillend kleur zelfde:
       kijkt 2-4 getallen terug (als mogelijk) en 2-4 getallen verder (als mogelijk)
@@ -31,8 +31,8 @@
     nummers zelfde, kleur verschillend:
       kijkt 0-6 getallen terug en 0-6 getallen verder (als nummer%10 = 1, 6 getallen maximaal verder, 0 getallen terug, gelijk bij buren)
       zelfde regel als bij nummers verschillend kleur zelfde, maar apparte lijst
-6: derde filter:
-  als er 0 jokers zijn:
+6: derde filter: V
+  als er 0 jokers zijn: V
     als er bij de 3 tile rijen 1 getal niet in zit, is het niet mogelijk
 7: een lijst die bijhoud hoeveel van elk getal er voorkomt (1/2) V
   soort van lib --> array gekozen V
