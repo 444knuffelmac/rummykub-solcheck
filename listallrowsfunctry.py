@@ -219,7 +219,7 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
     if jokercounted == 0:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i > uniquenumbers.len() - 3:
+            if i > len(uniquenumbers) - 3:
                 continue
 
             if number + 1 in uniquenumbers:
@@ -258,7 +258,7 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
     elif jokercounted == 1:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i == uniquenumbers.len()-1:
+            if i == len(uniquenumbers)-1:
                 continue
             if number+1 in uniquenumbers:
                 threetilerows.append([number,number+1,0])
@@ -316,7 +316,7 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
     if jokercounted == 0:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i > uniquenumbers.len() - 4:
+            if i > len(uniquenumbers) - 4:
                 continue
 
             if number + 1 in uniquenumbers:
@@ -330,7 +330,7 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
     elif jokercounted == 1:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i > uniquenumbers.len()-3:
+            if i > len(uniquenumbers)-3:
                 continue
             if number+1 in uniquenumbers:
                 if number+2 in uniquenumbers:
@@ -355,7 +355,7 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
     elif jokercounted == 2:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i == uniquenumbers.len()-1:
+            if i == len(uniquenumbers)-1:
                 continue
             if number+1 in uniquenumbers:
                 fourtilerows.append([number, number+1, 0,0])
@@ -421,10 +421,11 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
 def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (otherwise it can be saved as 3+3) --> 1xxx5 is the last
     #time jokers are usefull in that way, as it reduces it from 4 jokers to 3 jokers needed.
     fivetilerows = []
+    print(jokercounted,"hello")
     if jokercounted == 0:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i> uniquenumbers.len()-5:
+            if i> len(uniquenumbers)-5:
                 continue
 
             if number + 1 in uniquenumbers:
@@ -432,10 +433,10 @@ def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (oth
                     if number + 3 in uniquenumbers:
                         if number+4 in uniquenumbers:
                             fivetilerows.append([number, number + 1, number + 2, number + 3,number+4])
-    if jokercounted == 1:
+    elif jokercounted == 1:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i > uniquenumbers.len() - 4:
+            if i > len(uniquenumbers) - 4:
                 continue
 
             if number + 1 in uniquenumbers:
@@ -456,7 +457,7 @@ def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (oth
     elif jokercounted == 2:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i > uniquenumbers.len() - 3:
+            if i > len(uniquenumbers) - 3:
                 continue
             if number + 1 in uniquenumbers:
                 if number + 2 in uniquenumbers:
@@ -487,7 +488,7 @@ def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (oth
     elif jokercounted == 3:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
-            if i == uniquenumbers.len() - 1:
+            if i == len(uniquenumbers) - 1:
                 continue
             if number + 1 in uniquenumbers:
                 fivetilerows.append([number, number + 1, 0, 0,0])
@@ -556,19 +557,23 @@ def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (oth
                 fivetilerows.append([number, 0, 0, 0, number + 4])
     return fivetilerows
 
-def trysolveit(jokercounted,threetilerows):
+#def trysolveit(jokercounted,threetilerows,fourtilerows,fivetilerows):
 
 
-piecescolornumber = [110,110,111,112,112,113,113,104,310]
+piecescolornumber = [109,110,110,111,112,112,113,113,104,310]
 amountofjokers = jokercount(piecescolornumber)
 uniquenumber,frequencienumber = frequentielist(piecescolornumber)
 n,o = whatvalueshaveneighboursbothtypes(uniquenumber)
 neighbourlessnumbers = neighbourless(uniquenumber,n,o)
 stillpos = firstfilter(neighbourlessnumbers,uniquenumber)
 farneighbours = extendedneighbours(uniquenumber,amountofjokers,neighbourlessnumbers)
-threetilerow = makeallthreetilerows(uniquenumber,jokercount)
+threetilerow = makeallthreetilerows(uniquenumber,amountofjokers)
+fourtilerow = makeallfourtilerows(uniquenumber,amountofjokers)
+fivetilerow = makeallfivetilerows(uniquenumber,amountofjokers)
 print(uniquenumber)
 print(n)
 print(o)
 print(stillpos)
 print(threetilerow)
+print(fourtilerow)
+print(fivetilerow)
