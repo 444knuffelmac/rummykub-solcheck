@@ -558,9 +558,9 @@ def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (oth
     return fivetilerows
 
 #def trysolveit(jokercounted,threetilerows,fourtilerows,fivetilerows):
-
-
-piecescolornumber = [109,110,110,111,112,112,113,113,104,310]
+piecescolornumber = [101,102,103,104,105,105,106,107,108]
+#piecescolornumber = [0,101,102,103,104,105,105,106,108]
+#piecescolornumber = [109,110,110,111,112,112,113,113,104,310]
 amountofjokers = jokercount(piecescolornumber)
 uniquenumber,frequencienumber = frequentielist(piecescolornumber)
 n,o = whatvalueshaveneighboursbothtypes(uniquenumber)
