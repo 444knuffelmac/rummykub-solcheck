@@ -15,8 +15,6 @@ def reversenumber(number):
     return flippednumber
 def whatvalueshaveneighboursbothtypes(pscolornumber):
     pscolornumberalt = sortstringly(pscolornumber)  # presort for the other one
-    print(pscolornumber)
-    print(pscolornumberalt)
     withneighbourstype1 =[]
     withneighbourstype2 =[]
     for i in range(len(pscolornumber)):
@@ -181,7 +179,6 @@ def neighbourless(uniquenumbers,withneighbourstype1,withneighbourstype2):
     noneighbours = []
     for i in range(len(uniquenumbers)):
         if not((uniquenumbers[i] in withneighbourstype1) or (uniquenumbers[i] in withneighbourstype2)):
-            print(uniquenumbers[i])
             noneighbours.append(uniquenumbers[i])
     return noneighbours
 def extendedneighbours(uniquenumbers,jokercounted,noneighbours):
@@ -209,6 +206,8 @@ def secondfilter(noneighbours,extendedneighbour,jokercounted):
     if jokercounted == 1:
         for i in range(len(noneighbours)):
             number = noneighbours[i]
+            if number == 0:
+                continue
             if number in extendedneighbour:
                 continue
             else:
@@ -231,7 +230,7 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
                 if number + 300 in uniquenumbers:
                     threetilerows.append([number, number + 100, number + 300])
             if number + 200 in uniquenumbers:
-                if number + 300 in uniquenumber:
+                if number + 300 in uniquenumbers:
                     threetilerows.append([number, number + 200, number + 300])
 
         '''blauwe 3 kan --> 1,2,3 blauw
@@ -274,9 +273,9 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
                     threetilerows.append([number, number + 100, number + 300])
             if number+200 in uniquenumbers:
                 threetilerows.append([number, 0,number + 200])
-                if number+300 in uniquenumber:
+                if number+300 in uniquenumbers:
                     threetilerows.append([number, number + 200, number + 300])
-            if number+300 in uniquenumber:
+            if number+300 in uniquenumbers:
                 threetilerows.append([number, 0, number + 300])
 
     else:
@@ -297,16 +296,17 @@ def makeallthreetilerows(uniquenumbers,jokercounted):
                     threetilerows.append([number, number + 100, number + 300])
             if number+200 in uniquenumbers:
                 threetilerows.append([number, 0,number + 200])
-                if number+300 in uniquenumber:
+                if number+300 in uniquenumbers:
                     threetilerows.append([number, number + 200, number + 300])
-            if number+300 in uniquenumber:
+            if number+300 in uniquenumbers:
                 threetilerows.append([number, 0, number + 300])
     return threetilerows
 def thirthfilter(uniquenumbers,threetilerows):
     notinit = False
     for i in uniquenumbers:
-        number = uniquenumbers[i]
-        if not (number in threetilerows):
+        if i == 0:
+            continue
+        if not (i in threetilerows):
             notinit = True
             break
     return notinit
@@ -325,7 +325,7 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
                         fourtilerows.append([number, number + 1, number + 2,number+3])
             if number + 100 in uniquenumbers:
                 if number + 200 in uniquenumbers:
-                    if number+300 in uniquenumber:
+                    if number+300 in uniquenumbers:
                         fourtilerows.append([number, number + 100, number + 200,number+300])
     elif jokercounted == 1:
         for i in range(len(uniquenumbers)):
@@ -345,12 +345,12 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
             if number+100 in uniquenumbers:
                 if number+200 in uniquenumbers:
                     fourtilerows.append([number, number + 100, number + 200,0])
-                    if number+300 in uniquenumber:
+                    if number+300 in uniquenumbers:
                         fourtilerows.append([number,number+100, number + 200, number + 300])
                 if number+300 in uniquenumbers:
                     fourtilerows.append([number, number + 100, 0,number + 300])
             if number+200 in uniquenumbers:
-                if number+300 in uniquenumber:
+                if number+300 in uniquenumbers:
                     fourtilerows.append([number, 0,number + 200, number + 300])
     elif jokercounted == 2:
         for i in range(len(uniquenumbers)):
@@ -367,7 +367,7 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
                     fourtilerows.append([number,number+1,0, number+3])
             if number+2 in uniquenumbers:
                 fourtilerows.append([number,0,number+2, 0])
-                if number+3 in uniquenumber:
+                if number+3 in uniquenumbers:
                     fourtilerows.append([number,0,number+2,number+3])
             if number+3 in uniquenumbers:
                 fourtilerows.append([number,0,0, number+3])
@@ -375,13 +375,13 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
                 fourtilerows.append([number, number + 100, 0,0])
                 if number+200 in uniquenumbers:
                     fourtilerows.append([number, number + 100, number + 200,0])
-                    if number+300 in uniquenumber:
+                    if number+300 in uniquenumbers:
                         fourtilerows.append([number, number + 100, number+200,number+300])
                 if number+300 in uniquenumbers:
                     fourtilerows.append([number, number + 100,0, number + 300])
             if number+200 in uniquenumbers:
                 fourtilerows.append([number, 0,number + 200,0])
-                if number+300 in uniquenumber:
+                if number+300 in uniquenumbers:
                     fourtilerows.append([number,0, number + 200, number + 300])
             if number+300 in uniquenumbers:
                 fourtilerows.append([number, 0,0,number + 300])
@@ -393,7 +393,7 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
                 fourtilerows.append([number,number+1,0,0])
                 if number+2 in uniquenumbers:
                     fourtilerows.append([number, number+1, number + 2,0])
-                    if number+3 in uniquenumber:
+                    if number+3 in uniquenumbers:
                         fourtilerows.append([number,number+1,number+2, number+3])
                 if number+3 in uniquenumbers:
                     fourtilerows.append([number,number+1,0,number+3])
@@ -413,7 +413,7 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
                     fourtilerows.append([number, number + 100, 0,number + 300])
             if number+200 in uniquenumbers:
                 fourtilerows.append([number, 0,number + 200,0])
-                if number+300 in uniquenumber:
+                if number+300 in uniquenumbers:
                     fourtilerows.append([number,0, number + 200, number + 300])
             if number+300 in uniquenumbers:
                 fourtilerows.append([number, 0,0, number + 300])
@@ -421,7 +421,6 @@ def makeallfourtilerows(uniquenumbers,jokercounted):
 def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (otherwise it can be saved as 3+3) --> 1xxx5 is the last
     #time jokers are usefull in that way, as it reduces it from 4 jokers to 3 jokers needed.
     fivetilerows = []
-    print(jokercounted,"hello")
     if jokercounted == 0:
         for i in range(len(uniquenumbers)):
             number = uniquenumbers[i]
@@ -557,6 +556,22 @@ def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (oth
                 fivetilerows.append([number, 0, 0, 0, number + 4])
     return fivetilerows
 
+#zelfde als frequentielist maar zonder de frequentielist
+def onlyuniquenumbers(pscolornumber):
+    uniquenumbers = []
+    tempvalue = []
+    for i in range(len(pscolornumber)):
+        number = pscolornumber[i]
+        if not number in uniquenumbers:
+            uniquenumbers.append(number)
+    for i in range(len(uniquenumbers)):
+        number = uniquenumbers[i]
+        tempvalue.append(number)
+        tempvalue.append(pscolornumber.count(number))
+        tempvalue = []
+
+    return uniquenumbers
+'''
 #def trysolveit(jokercounted,threetilerows,fourtilerows,fivetilerows):
 piecescolornumber = [101,102,103,104,105,105,106,107,108]
 #piecescolornumber = [0,101,102,103,104,105,105,106,108]
@@ -577,3 +592,4 @@ print(stillpos)
 print(threetilerow)
 print(fourtilerow)
 print(fivetilerow)
+'''

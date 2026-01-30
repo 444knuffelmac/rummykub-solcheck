@@ -11,7 +11,7 @@ def rijchanger(rijen,pscolornumbr,cijfer):
     rijen.append(cijfer)
     pscolornumbr.remove(cijfer)
     return rijen,pscolornumbr
-def trymakerow(pscolornumber):
+def makeeveryrow(pscolornumber): #makes every possible row, longest variation (so 3,4,5,6 but not 3,4,5 as a bigger one is available)
     #if it is to small
     rows = []
     if len(pscolornumber) < 3:
@@ -19,6 +19,7 @@ def trymakerow(pscolornumber):
     #checks for jokers
     jokeramount = pscolornumber.count(0)
     if jokeramount == 0:
+        pscolornumberalt = sortstringly(pscolornumber) #presort for the other one
         k = pscolornumber[0]-1
         j=0 #amount in sequence
         p=[] # id of numbers in sequence
@@ -237,8 +238,9 @@ def trymakerow(pscolornumber):
                     j=0
 
         #rows with other color but same value
-        pscolornumberalt = sortstringly(pscolornumber)
-        for i in range(len(pscolornumberalt))
+
+        for i in range(len(pscolornumberalt)):
+
 
     return pscolornumber
 
