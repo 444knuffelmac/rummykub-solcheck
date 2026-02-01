@@ -190,372 +190,6 @@ def secondfilter(noneighbours,extendedneighbour,jokercounted):
                 possible = False
                 break
     return possible
-def makeallthreetilerows(uniquenumbers, jokercounted):
-    threetilerows = []
-    if jokercounted == 0:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i > len(uniquenumbers) - 3:
-                continue
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    threetilerows.append([number, number + 1, number + 2])
-            if number + 100 in uniquenumbers:
-                if number + 200 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 200])
-                if number + 300 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 300])
-            if number + 200 in uniquenumbers:
-                if number + 300 in uniquenumbers:
-                    threetilerows.append([number, number + 200, number + 300])
-    elif jokercounted == 1:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i == len(uniquenumbers) - 1:
-                continue
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    threetilerows.append([number, number + 1, number + 2])
-            if number + 100 in uniquenumbers:
-                if number + 200 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 200])
-                if number + 300 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 300])
-            if number + 200 in uniquenumbers:
-                if number + 300 in uniquenumbers:
-                    threetilerows.append([number, number + 200, number + 300])
-            if number+1 in uniquenumbers:
-                threetilerows.append([number, number + 1, 0])
-            if number + 2 in uniquenumbers:
-                threetilerows.append([number, 0, number + 2])
-            if number + 100 in uniquenumbers:
-                threetilerows.append([number, number + 100, 0])
-            if number+200 in uniquenumbers:
-                threetilerows.append([number, 0, number + 200])
-            if number + 300 in uniquenumbers:
-                threetilerows.append([number, 0, number + 300])
-    else:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    threetilerows.append([number, number + 1, number + 2])
-            if number + 100 in uniquenumbers:
-                if number + 200 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 200])
-                if number + 300 in uniquenumbers:
-                    threetilerows.append([number, number + 100, number + 300])
-            if number + 200 in uniquenumbers:
-                if number + 300 in uniquenumbers:
-                    threetilerows.append([number, number + 200, number + 300])
-            if number + 1 in uniquenumbers:
-                threetilerows.append([number, number + 1, 0])
-            if number+2 in uniquenumbers:
-                threetilerows.append([number, 0, number + 2])
-            if number+100 in uniquenumbers:
-                threetilerows.append([number, number + 100, 0])
-            if number+200 in uniquenumbers:
-                threetilerows.append([number, 0, number + 200])
-            if number + 300 in uniquenumbers:
-                threetilerows.append([number, 0, number + 300])
-            threetilerows.append([number, 0, 0])
-    return threetilerows
-def thirthfilter(uniquenumbers,threetilerows):
-    notinit = False
-    for i in uniquenumbers:
-        if i == 0:
-            continue
-        if not (i in threetilerows):
-            notinit = True
-            break
-    return notinit
-def makeallfourtilerows(uniquenumbers,jokercounted):
-    fourtilerows = []
-    if jokercounted == 0:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i > len(uniquenumbers) - 4:
-                continue
-
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number+3 in uniquenumbers:
-                        fourtilerows.append([number, number + 1, number + 2,number+3])
-            if number + 100 in uniquenumbers:
-                if number + 200 in uniquenumbers:
-                    if number+300 in uniquenumbers:
-                        fourtilerows.append([number, number + 100, number + 200,number+300])
-    elif jokercounted == 1:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i > len(uniquenumbers)-3:
-                continue
-            if number+1 in uniquenumbers:
-                if number+2 in uniquenumbers:
-                    if number+3 in uniquenumbers:
-                        fourtilerows.append([number, number+1, number + 2,number+3])
-            if number+100 in uniquenumbers:
-                if number+200 in uniquenumbers:
-                    if number+300 in uniquenumbers:
-                        fourtilerows.append([number,number+100, number + 200, number + 300])
-            if number+1 in uniquenumbers:
-                if number+2 in uniquenumbers:
-                    fourtilerows.append([number, number + 1, number+2, 0])
-                if number+3 in uniquenumbers:
-                    fourtilerows.append([number, number+1,0, number+3])
-            if number+2 in uniquenumbers:
-                if number+3 in uniquenumbers:
-                    fourtilerows.append([number,0, number+2, number+3])
-            if number+100 in uniquenumbers:
-                if number+200 in uniquenumbers:
-                    fourtilerows.append([number, number + 100, number + 200,0])
-                if number+300 in uniquenumbers:
-                    fourtilerows.append([number, number + 100, 0,number + 300])
-            if number+200 in uniquenumbers:
-                if number+300 in uniquenumbers:
-                    fourtilerows.append([number, 0,number + 200, number + 300])
-    elif jokercounted == 2:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i == len(uniquenumbers)-1:
-                continue
-            if number+1 in uniquenumbers:
-                if number+2 in uniquenumbers:
-                    if number+3 in uniquenumbers:
-                        fourtilerows.append([number, number+1, number + 2,number+3])
-            if number+100 in uniquenumbers:
-                if number+200 in uniquenumbers:
-                    if number+300 in uniquenumbers:
-                        fourtilerows.append([number,number+100, number + 200, number + 300])
-            if number+1 in uniquenumbers:
-                if number+2 in uniquenumbers:
-                    fourtilerows.append([number, number + 1, number+2, 0])
-                if number+3 in uniquenumbers:
-                    fourtilerows.append([number, number+1,0, number+3])
-            if number+2 in uniquenumbers:
-                if number+3 in uniquenumbers:
-                    fourtilerows.append([number,0, number+2, number+3])
-            if number+100 in uniquenumbers:
-                if number+200 in uniquenumbers:
-                    fourtilerows.append([number, number + 100, number + 200,0])
-                if number+300 in uniquenumbers:
-                    fourtilerows.append([number, number + 100, 0,number + 300])
-            if number+200 in uniquenumbers:
-                if number+300 in uniquenumbers:
-                    fourtilerows.append([number, 0,number + 200, number + 300])
-            if number+1 in uniquenumbers:
-                fourtilerows.append([number, number+1, 0,0])
-            if number+2 in uniquenumbers:
-                fourtilerows.append([number, 0,number+2,0])
-            if number+3 in uniquenumbers:
-                fourtilerows.append([number, 0, 0,number+3])
-            if number+100 in uniquenumbers:
-                fourtilerows.append([number, number+100, 0,0])
-            if number+200 in uniquenumbers:
-                fourtilerows.append([number,0, number+200, 0])
-            if number+300 in uniquenumbers:
-                fourtilerows.append([number, 0,0, number+300])
-
-    else:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        fourtilerows.append([number, number + 1, number + 2, number + 3])
-            if number + 100 in uniquenumbers:
-                if number + 200 in uniquenumbers:
-                    if number + 300 in uniquenumbers:
-                        fourtilerows.append([number, number + 100, number + 200, number + 300])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    fourtilerows.append([number, number + 1, number + 2, 0])
-                if number + 3 in uniquenumbers:
-                    fourtilerows.append([number, number + 1, 0, number + 3])
-            if number + 2 in uniquenumbers:
-                if number + 3 in uniquenumbers:
-                    fourtilerows.append([number, 0, number + 2, number + 3])
-            if number + 100 in uniquenumbers:
-                if number + 200 in uniquenumbers:
-                    fourtilerows.append([number, number + 100, number + 200, 0])
-                if number + 300 in uniquenumbers:
-                    fourtilerows.append([number, number + 100, 0, number + 300])
-            if number + 200 in uniquenumbers:
-                if number + 300 in uniquenumbers:
-                    fourtilerows.append([number, 0, number + 200, number + 300])
-            if number + 1 in uniquenumbers:
-                fourtilerows.append([number, number + 1, 0, 0])
-            if number + 2 in uniquenumbers:
-                fourtilerows.append([number, 0, number + 2, 0])
-            if number + 3 in uniquenumbers:
-                fourtilerows.append([number, 0, 0, number + 3])
-            if number + 100 in uniquenumbers:
-                fourtilerows.append([number, number + 100, 0, 0])
-            if number + 200 in uniquenumbers:
-                fourtilerows.append([number, 0, number + 200, 0])
-            if number + 300 in uniquenumbers:
-                fourtilerows.append([number, 0, 0, number + 300])
-            fourtilerows.append([number, 0, 0,0])
-    return fourtilerows
-def makeallfivetilerows(uniquenumbers, jokercounted): #longest row with use (otherwise it can be saved as 3+3) --> 1xxx5 is the last
-    #time jokers are usefull in that way, as it reduces it from 4 jokers to 3 jokers needed.
-    fivetilerows = []
-    if jokercounted == 0:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i> len(uniquenumbers)-5:
-                continue
-
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        if number+4 in uniquenumbers:
-                            fivetilerows.append([number, number + 1, number + 2, number + 3,number+4])
-    elif jokercounted == 1:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i > len(uniquenumbers) - 4:
-                continue
-            if number+1 in uniquenumbers:
-                if number+2 in uniquenumbers:
-                    if number+3 in uniquenumbers:
-                        if number+4 in uniquenumbers:
-                            fivetilerows.append([number, number + 1, number + 2, number + 3,number+4])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2, number + 3, 0])
-                    if number+4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2,0, number + 4])
-                if number+3 in uniquenumbers:
-                    if number+4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, 0, number + 3, number + 4])
-            if number+2 in uniquenumbers:
-                if number+3 in uniquenumbers:
-                    if number+4 in uniquenumbers:
-                        fivetilerows.append([number, 0, number + 2, number + 3, number + 4])
-    elif jokercounted == 2:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i > len(uniquenumbers) - 3:
-                continue
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        if number + 4 in uniquenumbers:
-                            fivetilerows.append([number, number + 1, number + 2, number + 3, number + 4])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2, number + 3, 0])
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2, 0, number + 4])
-                if number + 3 in uniquenumbers:
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, 0, number + 3, number + 4])
-            if number + 2 in uniquenumbers:
-                if number + 3 in uniquenumbers:
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, 0, number + 2, number + 3, number + 4])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, number + 2, 0, 0])
-                if number + 3 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, 0, number + 3, 0])
-                if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, 0, 0, number + 4])
-            if number + 2 in uniquenumbers:
-                if number + 3 in uniquenumbers:
-                    fivetilerows.append([number, 0, number + 2, number + 3, 0])
-                if number + 4 in uniquenumbers:
-                    fivetilerows.append([number, 0, number + 2, 0, number + 4])
-
-    elif jokercounted == 3:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if i == len(uniquenumbers) - 1:
-                continue
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        if number + 4 in uniquenumbers:
-                            fivetilerows.append([number, number + 1, number + 2, number + 3, number + 4])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2, number + 3, 0])
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2, 0, number + 4])
-                if number + 3 in uniquenumbers:
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, 0, number + 3, number + 4])
-            if number + 2 in uniquenumbers:
-                if number + 3 in uniquenumbers:
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, 0, number + 2, number + 3, number + 4])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, number + 2, 0, 0])
-                if number + 3 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, 0, number + 3, 0])
-                if number + 4 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, 0, 0, number + 4])
-            if number + 2 in uniquenumbers:
-                if number + 3 in uniquenumbers:
-                    fivetilerows.append([number, 0, number + 2, number + 3, 0])
-                if number + 4 in uniquenumbers:
-                    fivetilerows.append([number, 0, number + 2, 0, number + 4])
-            if number+1 in uniquenumbers:
-                fivetilerows.append([number, number + 1, 0, 0, 0])
-            if number+2 in uniquenumbers:
-                fivetilerows.append([number, 0, number + 2, 0, 0])
-            if number+3 in uniquenumbers:
-                fivetilerows.append([number, 0, 0, number + 3, 0])
-            if number+4 in uniquenumbers:
-                fivetilerows.append([number, 0, 0, 0, number + 4])
-    else:
-        for i in range(len(uniquenumbers)):
-            number = uniquenumbers[i]
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        if number + 4 in uniquenumbers:
-                            fivetilerows.append([number, number + 1, number + 2, number + 3, number + 4])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    if number + 3 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2, number + 3, 0])
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, number + 2, 0, number + 4])
-                if number + 3 in uniquenumbers:
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, number + 1, 0, number + 3, number + 4])
-            if number + 2 in uniquenumbers:
-                if number + 3 in uniquenumbers:
-                    if number + 4 in uniquenumbers:
-                        fivetilerows.append([number, 0, number + 2, number + 3, number + 4])
-            if number + 1 in uniquenumbers:
-                if number + 2 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, number + 2, 0, 0])
-                if number + 3 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, 0, number + 3, 0])
-                if number + 4 in uniquenumbers:
-                    fivetilerows.append([number, number + 1, 0, 0, number + 4])
-            if number + 2 in uniquenumbers:
-                if number + 3 in uniquenumbers:
-                    fivetilerows.append([number, 0, number + 2, number + 3, 0])
-                if number + 4 in uniquenumbers:
-                    fivetilerows.append([number, 0, number + 2, 0, number + 4])
-            if number + 1 in uniquenumbers:
-                fivetilerows.append([number, number + 1, 0, 0, 0])
-            if number + 2 in uniquenumbers:
-                fivetilerows.append([number, 0, number + 2, 0, 0])
-            if number + 3 in uniquenumbers:
-                fivetilerows.append([number, 0, 0, number + 3, 0])
-            if number + 4 in uniquenumbers:
-                fivetilerows.append([number, 0, 0, 0, number + 4])
-            fivetilerows.append([number, 0, 0,0, 0])
-    return fivetilerows
 def beginswith(matrixarray):
     beginwaarden=[]
     for i in range(len(matrixarray)):
@@ -585,19 +219,146 @@ def mogelijkepaden(pad,rows,beginrows):
             if not stopped:
                 confirmedpos.append(i)
     return confirmedpos
-def getmogelijkepaden(currentpad,threetileros,fourtileros,fivetileros,beginthreeti,beginfourti,beginfiveti):
+def getmogelijkepaden(currentpad,alltilerows,alltilerowsbegins):
     #currentpad = de lijst van overgebleven nummers in dit pad
-    allpossiblerows = [] #alle mogelijke rijen, niet op basis van hoeveelheid
-    rows3mog = mogelijkepaden(currentpad,threetileros,beginthreeti)
-    rows4mog = mogelijkepaden(currentpad,fourtileros,beginfourti)
-    rows5mog = mogelijkepaden(currentpad,fivetileros,beginfiveti)
-    for i in rows5mog:
-        allpossiblerows.append(i)
-    for i in rows4mog:
-        allpossiblerows.append(i)
-    for i in rows3mog:
-        allpossiblerows.append(i)
-    return rows3mog,rows4mog,rows5mog,allpossiblerows
+    #allpossiblerows alle mogelijke rijen in dit pad
+    allpossiblerows = mogelijkepaden(currentpad,alltilerows,alltilerowsbegins)
+    return allpossiblerows
+def makeallrowsnofunc(uniquenumbers, jokercounted):
+    allrows = []
+    threetilerows = []
+    for i in uniquenumbers:
+        if i + 1 in uniquenumbers:
+            if i + 2 in uniquenumbers:
+                if i + 3 in uniquenumbers:
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, i + 1, i + 2, i + 3, i + 4])
+                    allrows.append([i, i + 1, i + 2, i + 3])
+        if i + 100 in uniquenumbers:
+            if i + 200 in uniquenumbers:
+                if i + 300 in uniquenumbers:
+                    allrows.append([i, i + 100, i + 200, i + 300])
+        if i + 1 in uniquenumbers:
+            if i + 2 in uniquenumbers:
+                allrows.append([i, i + 1, i + 2])
+                threetilerows.append([i, i + 1, i + 2])
+        if i + 100 in uniquenumbers:
+            if i + 200 in uniquenumbers:
+                allrows.append([i, i + 100, i + 200])
+                threetilerows.append([i, i + 100, i + 200])
+            if i + 300 in uniquenumbers:
+                allrows.append([i, i + 100, i + 300])
+                threetilerows.append([i, i + 100, i + 300])
+        if i + 200 in uniquenumbers:
+            if i + 300 in uniquenumbers:
+                allrows.append([i, i + 200, i + 300])
+                threetilerows.append([i, i + 200, i + 300])
+    if jokercounted > 0:
+        for i in uniquenumbers:
+            if i + 1 in uniquenumbers:
+                if i + 2 in uniquenumbers:
+                    if i + 3 in uniquenumbers:
+                        allrows.append([i, i + 1, i + 2, i + 3, 0])
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, i + 1, i + 2, 0, i + 4])
+                if i + 3 in uniquenumbers:
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, i + 1, 0, i + 3, i + 4])
+            if i + 2 in uniquenumbers:
+                if i + 3 in uniquenumbers:
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, 0, i + 2, i + 3, i + 4])
+            if i + 1 in uniquenumbers:
+                if i + 2 in uniquenumbers:
+                    allrows.append([i, i + 1, i + 2, 0])
+                if i + 3 in uniquenumbers:
+                    allrows.append([i, i + 1, 0, i + 3])
+            if i + 2 in uniquenumbers:
+                if i + 3 in uniquenumbers:
+                    allrows.append([i, 0, i + 2, i + 3])
+            if i + 100 in uniquenumbers:
+                if i + 200 in uniquenumbers:
+                    allrows.append([i, i + 100, i + 200, 0])
+                if i + 300 in uniquenumbers:
+                    allrows.append([i, i + 100, 0, i + 300])
+            if i + 200 in uniquenumbers:
+                if i + 300 in uniquenumbers:
+                    allrows.append([i, 0, i + 200, i + 300])
+            if i + 1 in uniquenumbers:
+                allrows.append([i, i + 1, 0])
+                threetilerows.append([i, i + 1, 0])
+            if i + 2 in uniquenumbers:
+                allrows.append([i, 0, i + 2])
+                threetilerows.append([i, 0, i + 2])
+            if i + 100 in uniquenumbers:
+                allrows.append([i, i + 100, 0])
+                threetilerows.append([i, i + 100, 0])
+            if i + 200 in uniquenumbers:
+                allrows.append([i, 0, i + 200])
+                threetilerows.append([i, 0, i + 200])
+
+            if i + 300 in uniquenumbers:
+                allrows.append([i, 0, i + 300])
+                threetilerows.append([i, 0, i + 300])
+        if jokercounted > 1:
+            for i in uniquenumbers:
+                if i + 1 in uniquenumbers:
+                    if i + 2 in uniquenumbers:
+                        allrows.append([i, i + 1, i + 2, 0, 0])
+                    if i + 3 in uniquenumbers:
+                        allrows.append([i, i + 1, 0, i + 3, 0])
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, i + 1, 0, 0, i + 4])
+                if i + 2 in uniquenumbers:
+                    if i + 3 in uniquenumbers:
+                        allrows.append([i, 0, i + 2, i + 3, 0])
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, 0, i + 2, 0, i + 4])
+                if i + 3 in uniquenumbers:
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, 0, 0, i + 3, i + 4])
+                if i + 1 in uniquenumbers:
+                    allrows.append([i, i + 1, 0, 0])
+                if i + 2 in uniquenumbers:
+                    allrows.append([i, 0, i + 2, 0])
+                if i + 3 in uniquenumbers:
+                    allrows.append([i, 0, 0, i + 3])
+                if i + 100 in uniquenumbers:
+                    allrows.append([i, i + 100, 0, 0])
+                if i + 200 in uniquenumbers:
+                    allrows.append([i, 0, i + 200, 0])
+                if i + 300 in uniquenumbers:
+                    allrows.append([i, 0, 0, i + 300])
+                allrows.append([i, 0, 0])
+            if jokercounted > 2:
+                for i in uniquenumbers:
+                    if i + 1 in uniquenumbers:
+                        allrows.append([i, i + 1, 0, 0, 0])
+                    if i + 2 in uniquenumbers:
+                        allrows.append([i, 0, i + 2, 0, 0])
+                    if i + 3 in uniquenumbers:
+                        allrows.append([i, 0, 0, i + 3, 0])
+                    if i + 4 in uniquenumbers:
+                        allrows.append([i, 0, 0, 0, i + 4])
+                    allrows.append([i, 0, 0, 0])
+                if jokercounted > 3:
+                    for i in uniquenumbers:
+                        allrows.append([i, 0, 0, 0, 0])
+
+            return True, allrows
+    stillpossible = False
+    for i in uniquenumbers:
+        stillpossible = False
+        if i == 0:
+            continue
+        for k in threetilerows:
+            if not (i in k):
+                continue
+            stillpossible = True
+            break
+        if not stillpossible:
+            break
+    return stillpossible, allrows
 def finalcalculatorrecursive(piececolnumb):
     if not piececolnumb:
         return True,[]
@@ -620,20 +381,15 @@ def finalcalculatorrecursive(piececolnumb):
     stillpos =secondfilter(neighbourlessnumbers,farneighbours,jokers)
     if not stillpos:
         return False,[]
-    threetilerow = makeallthreetilerows(uniquenumbers, jokers)
-    stillpos = thirthfilter(uniquenumbers, threetilerow)
+    stillpos,alltilerows = makeallrowsnofunc(uniquenumbers, jokers)
     if not stillpos:
         return False,[]
-    fourtilerow = makeallfourtilerows(uniquenumbers, jokers)
-    fivetilerow = makeallfivetilerows(uniquenumbers, jokers)
-    threetilerowbegin = beginswith(threetilerow)
-    fourtilerowbegin = beginswith(fourtilerow)
-    fivetilerowbegin = beginswith(fivetilerow)
+    alltilerowsbegins = beginswith(alltilerows)
     oplossing =[]
-    if not piececolnumb:
-        return True,[]
-    a,b,c,mogelijkpaden = getmogelijkepaden(piececolnumb,threetilerow,fourtilerow,fivetilerow,threetilerowbegin,fourtilerowbegin,fivetilerowbegin)
+    mogelijkpaden = getmogelijkepaden(piececolnumb,alltilerows,alltilerowsbegins)
     possible = False
+    print(mogelijkpaden)
+    print(len(mogelijkpaden))
     for i in mogelijkpaden:
         smallersize = piececolnumb.copy()
         for l in i:
