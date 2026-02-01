@@ -1,0 +1,33 @@
+0: meer stresstests, voor de erge fouten eruit te halen
+   eigenlijk alle mogelijke opties doorgaan die nuttig zijn
+   dus niet de (3^52)*(totaaljokers+1) van mogelijke opties
+       (3^52 wegens 0,1,2 van ieder stuk mogelijk, 52 unieke stukken
+        *(jokercount + 1) want er kunnen zoveel jokers erin zitten
+ 
+
+1: betere input
+   web hosting voor html input, wegens makkelijker te coderen
+   dit betekent omzetten naar vscode suppoeted python (imports deden raar)
+   en output tonen
+2: verschil tussen kaarten in hand en op bord
+2.1: kaarten op bord moeten altijd er liggen
+2.2: kaarten in hand worden zo gekozen:
+     allemaal kunnen uitgelegd worden = doen
+     niet mogelijk:
+       als keuze tussen 1 kaart over in hand of 1 kaart + joker, kies tweede
+       kaarten die je liefst in hand hebt:
+          1: 5-9 (alle mogelijke richtingen)
+          2: jokers
+      kaarten die je weg wilt:
+          1: 1 en 13
+          2: 2 en 12
+          ...
+
+3: versterking van 2:
+    kijken wat er ligt op bord, waar je wat kunt leggen, welke stukken er mzer waard zijn
+    als er een 10,11,12,13 en 10,11,12 kan je beter geen 1,2,3 leggen
+4: afbeeldingen als input geven
+    4.1 ocr voor cijfers
+        geeft de waarde van 1-13 of j
+    4.2 color detection
+        kijkt waar de getallen van komen, kijkt die plaats na en kijkt welk klzur deze origineel was
