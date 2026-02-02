@@ -343,7 +343,10 @@ def makeallrowsnofunc(uniquenumbers, jokercounted):
 
             return True, allrows
     stillpossible = False
-    for i in uniquenumbers:
+    uniquenumbersnojoker = uniquenumbers.copy()
+    if 0 in uniquenumbersnojoker:
+        uniquenumbersnojoker.remove(0)
+    for i in uniquenumbersnojoker:
         stillpossible = False
         if i == 0:
             continue
@@ -384,8 +387,9 @@ def finalcalculatorrecursive(piececolnumb):
     oplossing =[]
     mogelijkpaden = mogelijkepaden(piececolnumb,alltilerows,alltilerowsbegins)
     possible = False
-    print(mogelijkpaden)
-    print(len(mogelijkpaden))
+    with open('../MeeBezig/afgelegdpad.txt','a') as afgelegdpad:
+        print(mogelijkpaden,file=afgelegdpad)
+        print(len(mogelijkpaden),file=afgelegdpad)
     for i in mogelijkpaden:
         smallersize = piececolnumb.copy()
         for l in i:
