@@ -1,6 +1,7 @@
 ln = input("nl or en?")
-piecescolornumber = []
-def inputwithpiece():
+inhand = []
+outhand = []
+def inputwithpiece(listtoadd):
     j = 0  # jokerthisinput
     colorpiece = input("yellow/green,red,blue,black and joker").lower()
     if colorpiece[0] == "y" or colorpiece[0] == "g":
@@ -18,9 +19,9 @@ def inputwithpiece():
         piecenumber = int(input("number 1-13"))
         if 0 < piecenumber < 14:
             piece = colorpiece + piecenumber
-            piecescolornumber.append(piece)
+            listtoadd.append(piece)
     else:
-        piecescolornumber.append(colorpiece)
+        listtoadd.append(colorpiece)
 if ln=="nl":
     ln=False
 else:
@@ -30,10 +31,13 @@ if ln:
     pih = int( input("total amount of pieces in your hand")) #pih = pieces in hand
     #totaalstukken
     for i in range(pobc):
-        inputwithpiece()
+        inputwithpiece(inhand)
 
     for i in range(pih):
-        inputwithpiece()
-print(piecescolornumber)
-piecescolornumber.sort()
-print(piecescolornumber)
+        inputwithpiece(outhand)
+print(inhand)
+print(outhand)
+inhand.sort()
+outhand.sort()
+print(inhand)
+print(outhand)

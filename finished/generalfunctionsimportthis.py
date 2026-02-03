@@ -387,7 +387,7 @@ def finalcalculatorrecursive(piececolnumb):
     oplossing =[]
     mogelijkpaden = mogelijkepaden(piececolnumb,alltilerows,alltilerowsbegins)
     possible = False
-    with open('../MeeBezig/afgelegdpad.txt','a') as afgelegdpad:
+    with open('../finished/afgelegdpad.txt', 'a') as afgelegdpad:
         print(mogelijkpaden,file=afgelegdpad)
         print(len(mogelijkpaden),file=afgelegdpad)
     for i in mogelijkpaden:
