@@ -39,8 +39,9 @@ def allpossiblecombinations(numbers):
             combinations.append(m)
         i+=1
     return combinations
-print(allpossiblecombinations([1,2,3]))
-print(allpossiblecombinations([1,2,2,3]))
+#print(allpossiblecombinations([1,2,3]))
+#print(allpossiblecombinations([1,2,2,3]))
+#print(allpossiblecombinations([1,2,2,3,4,5]))
 
 '''
         wat wil ik dat deze code doet:
