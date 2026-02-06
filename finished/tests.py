@@ -10,7 +10,6 @@ def caller(debugmode:bool):
                     for piecescolornumber in testcases:
                         print(i,"itterations")
                         print(i, "itterations",file=f)
-                        print(i, "itterations",file=poi)
                         i += 1
                         continued = True
                         pieceslist = piecescolornumber.split(',')
@@ -26,7 +25,7 @@ def caller(debugmode:bool):
                         liststring =  list(map(int, pieceslist))
                         solution,solutionpath = generalfunctionsimportthis.finalcalculatorrecursive(liststring)
                         print(solution,solutionpath)
-                        print(solution,solutionpath,file=poi)
+                        print(solutionpath,file=poi)
                         with open("../finished/afgelegdpad.txt", "r+") as afegdpad:
                             for dqf in afegdpad:
                                 dqf = dqf.split(',')
@@ -44,7 +43,7 @@ def caller(debugmode:bool):
         with open('../MeeBezig/afgelegdpadmetit.txt', 'r+') as f:
             f.truncate(0)
             f.seek(0)
-            with open("../MeeBezig/testvalues.txt") as testcases:
+            with open("../MeeBezig/testvalues") as testcases:
                 with open("../finished/gevondenoplossingen.txt","w") as poi:
                     i = 1
                     for piecescolornumber in testcases:
@@ -68,3 +67,6 @@ def caller(debugmode:bool):
                         print(solution, solutionpath,file=f)
 
             f.close()
+
+
+

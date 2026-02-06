@@ -1,0 +1,15 @@
+['[[101', ' 102', ' 103', ' 104]', ' [101', ' 102', ' 103]]']
+['2']
+False []
+False []
+['[[101', ' 102', ' 103', ' 104]', ' [101', ' 102', ' 103]]'] handsverbord
+['2'] handsverbord
+True [[101, 102, 103, 104]]
+False []
+['[[102', ' 103', ' 104]]'] handsverbord
+['1'] handsverbord
+True [[102, 103, 104]]
+['[[102', ' 103', ' 104]]'] handsverbord
+['1'] handsverbord
+False []
+False []
