@@ -1,5 +1,4 @@
 from finished import listallrowsfunctry
-
 def allpossiblecombinations(numbers):
     uniquenumbers, freqlist = listallrowsfunctry.frequentielist(numbers)
     combinations = []
