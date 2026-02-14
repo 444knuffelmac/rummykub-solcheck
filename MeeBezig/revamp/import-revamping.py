@@ -40,8 +40,6 @@ def whatvalueshaveneighboursbothtypes(pscolornumber):
         elif i + 1 < len(pscolornumber):
             if number + 1 == pscolornumber[i + 1]:
                 withneighbourstype1.append(number);continue
-
-    for i in range(len(pscolornumberalt)):
         number = pscolornumberalt[i]
         if number == 0: continue
         if number % 10 == 1:
@@ -156,26 +154,19 @@ def extendedneighbours(uniquenumbers, jokercounted, noneighbours):
 
 
 def secondfilter(noneighbours, extendedneighbour, jokercounted):
-    possible = True
     if len(extendedneighbour) > (jokercounted * 2) + 1:
-        possible = False
+        return False
     elif jokercounted == 1:
         for i in noneighbours:
-            if i == 0:
-                continue
-            if i in extendedneighbour:
+            if i == 0 or i in extendedneighbour:
                 continue
             else:
-                possible = False
-                break
-    return possible
+                return False
+    return True
 
 
 def beginswith(matrixarray):
-    beginwaarden = []
-    for i in range(len(matrixarray)):
-        beginwaarden.append(matrixarray[i][0])
-    return beginwaarden
+    return [i[0] for i in matrixarray]
 
 
 def mogelijkepaden(pad, rows, beginrows):
@@ -381,7 +372,7 @@ def finalcalculatorrecursive(piececolnumb):
         return False, []
     alltilerowsbegins = beginswith(alltilerows)
     oplossing = []
-    mogelijkpaden = mogelijkepaden(piececolnumb, alltilerows, alltilerowsbegins)
+    mogelijkpaden = mogelijkepaden(uniquenumbers, alltilerows, alltilerowsbegins)
     possible = False
     for i in mogelijkpaden:
         smallersize = piececolnumb.copy()

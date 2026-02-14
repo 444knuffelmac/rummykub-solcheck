@@ -22,6 +22,9 @@ def sortstringly(pscolornumber):
     for x in range(len(pscolorstring)):
         pscolornumber2.append(int(pscolorstring[x]))
     return pscolornumber2
+
+
+
 def reversenumber(number):
     stringnumber = str(number)
     flippednumber = int(stringnumber[::-1])
