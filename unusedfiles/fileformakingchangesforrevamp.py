@@ -115,18 +115,46 @@ def mogelijkepaden3(pad, rows):
     beginrows = [i[0] for i in rows]
     deletablerows = rows.copy()
     for w in pad:
-        while not w:
+        if not w:
             continue
         if w in beginrows:
             for i in deletablerows:
                 if i[0] == w:
                     for k in i:
-                        if k in pad:
-                            continue
-                        deletablerows.remove(i)
-                        break
+                        if not(k in pad):
+                            deletablerows.remove(i)
     return deletablerows
 
+
+
+
+def mogelijkepaden4(pad, rows):
+    # pad = de lijst van overgebleven nummers in dit pad
+    # confirmedpos alle mogelijke rijen in dit pad
+    beginrows = [i[0] for i in rows]
+    deletablerows = rows.copy()
+    for w in pad:
+        if not (w and w in beginrows):
+            continue
+        for i in deletablerows:
+            if i[0] == w:
+                for k in i:
+                    if not (k in pad): deletablerows.remove(i)
+
+    return deletablerows
+
+def mogelijkepaden5(pad, rows):
+    # pad = de lijst van overgebleven nummers in dit pad
+    # confirmedpos alle mogelijke rijen in dit pad
+    beginrows = [i[0] for i in rows]
+    deletablerows = rows.copy()
+    for w in pad:
+        if not (w and w in beginrows):
+            continue
+        for i in rows:
+            if i[0] == w:
+                [deletablerows.remove(i) for k in i if not (k in pad)]
+    return deletablerows
 
 def sortstringlyfinal(pscolornumber:list):
     ## sorted list of reverse ints
