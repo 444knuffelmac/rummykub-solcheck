@@ -1,5 +1,7 @@
-from finished import listallrowsfunctry
-def allpossiblecombinations(numbers):
+import time
+#from finished import listallrowsfunctry
+from itertools import combinations,chain
+"""def allpossiblecombinations(numbers):
     uniquenumbers, freqlist = listallrowsfunctry.frequentielist(numbers)
     combinations = []
     i=0
@@ -37,11 +39,39 @@ def allpossiblecombinations(numbers):
         for m in subcombinations:
             combinations.append(m)
         i+=1
-    return combinations
+    return combinations"""
+def allpossiblecombinations(numbers):
+    # powerset([1,2,3]) → () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)
+    s = list(numbers)
+    return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 #print(allpossiblecombinations([1,2,3]))
 #print(allpossiblecombinations([1,2,2,3]))
-#print(allpossiblecombinations([1,2,2,3,4,5]))
-
+"""start = time.time()
+print(allpossiblecombinations([1,2,2,3,4,5]))
+end = time.time()
+print(end - start)#4.076957702636719e-05
+start = time.time()
+#print(allpossiblecombinations([101,101,102,102,103,103,104,104,105,105,106,106,107,107,108,108,109,109,110,110,111,111,112,112,113,113,201,201,202,202,203,203,204,204,205,205,206,206,207,207,208,208,209,209,210,210,211,211,212,212,213,213,301,301,302,302,303,303,304,304,305,305,306,306,307,307,308,308,309,309,310,310,311,311,312,312,313,313,401,401,402,402,403,403,404,404,405,405,406,406,407,407,408,408,409,409,410,410,411,411,412,412,413,413,0,0,0,0,0,0,0,0]))
+#print(allpossiblecombinations([101,101,102,102,103,103,104,104,105,105,106,106,107,107,108,108,109,109,110,110,111,111,z112,112,113,113,201,201,202,202,203,203,204,204,205,205,206,206,207,207,208,208,209,209,210,210,211,211,212,212,213,213,301,301,302,302,303,303,304,304,305,305,306,306,307,307,308,308,309,309,310,310,311,311,312,312,313,313,401,401,402,402,403,403,404,404,405,405,406,406,407,407,408,408,409,409,410,410,411,411,412,412,413,413]))
+#print(allpossiblecombinations([101,101,102,102,103,103,104,104,105,105,106,106,107,107,108,108,109,109,110,110,111,111,112,112,113,113]))
+print(allpossiblecombinations([101,102,103,104,105,107,108,109,110,111,112,113]))
+end = time.time()
+print(end - start)#0.004841804504394531"""
+start = time.time()
+d = [101,101,102,102,103,103,104,104,105,105,106,106,107,107,108,108,109,109]
+m = allpossiblecombinations(d)
+print(len(m))
+m = list(set(m))
+print(len(m))
+#print(m)
+m.pop(len(m)-1)
+#print(m)
+end = time.time()
+print(end - start) #0.6871631145477295 vs 0,16
+start = time.time()
+#print(allpossiblecombinations([101,101,102,102,103,103,104,104,105,105,106,106,107,107,108,108,109,109,110,110,111,111,112,112,113,113]))
+end = time.time()
+print(end - start) # not ending vs 73.83786606788635
 '''
         wat wil ik dat deze code doet:
         maxlength van output = len(input)-1
