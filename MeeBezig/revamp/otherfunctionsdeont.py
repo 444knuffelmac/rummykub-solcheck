@@ -1,43 +1,36 @@
-from itertools import combinations, chain
-def reversenumber(number:int):
-    stringnumber = str(number)
-    flippednumber = int(stringnumber[::-1])
-    return (flippednumber * 10) if len(stringnumber) == 2 else flippednumber
+#from itertools import combinations, chain
 
 
 def whatvalueshaveneighboursbothtypes(pscolornumber):
-    pscolornumberalt =  [int(s) for s in sorted([str(s)[::-1] for s in pscolornumber])]  # presort for the other one
-    noneighbours = pscolornumber.copy()
-    for i in range(len(pscolornumber)):
+    noneighbours = []
+    x=len(pscolornumber)
+    for i in range(x):
         number = pscolornumber[i]
-        if number == 0: noneighbours.remove(number); continue
+        if number == 0: continue
         if 0 < i and number - 1 == pscolornumber[i - 1]:
-            noneighbours.remove(number);continue
-
-        if i + 2 < len(pscolornumber) and number + 1 == pscolornumber[i + 1]:
-            noneighbours.remove(number);continue
-    for i in range(len(pscolornumberalt)):
-        number = pscolornumberalt[i]
-        if not (reversenumber(number) in noneighbours): continue
-        if i + 1 < len(pscolornumberalt) and number %10 <= 3:
-            if number + 1 == pscolornumberalt[i + 1]:
-                noneighbours.remove(reversenumber(number)); continue
-            if number %10 <= 2:
-                if number + 2 == pscolornumberalt[i + 1]:
-                    noneighbours.remove(reversenumber(number));continue
-                if number % 10 == 1:
-                    if number + 3 == pscolornumberalt[i + 1]:
-                        noneighbours.remove(reversenumber(number)); continue
-        if 0 < i and number %10 >= 2:
-            if number - 1 == pscolornumberalt[i - 1]:
-                noneighbours.remove(reversenumber(number)); continue
-            if number % 10 >= 3:
-                if number - 2 == pscolornumberalt[i - 1]:
-                    noneighbours.remove(reversenumber(number));continue
-                if number % 10 == 4:
-                    if number - 3 == pscolornumberalt[i - 1]:
-                        noneighbours.remove(reversenumber(number));continue
+            continue
+        if i + 2 < x and number + 1 == pscolornumber[i + 1]:
+            continue
+        if number //100 <= 3:
+            if number + 100 in pscolornumber:
+                continue
+            if number //100 <= 2:
+                if number + 200 in pscolornumber:
+                    continue
+                if number //100 == 1:
+                    if number + 300 in pscolornumber:
+                         continue
+        if number //100 >= 2:
+            if number - 100 in pscolornumber:
+                 continue
+            if number //100 >= 3:
+                if number - 200 in pscolornumber:
+                    continue
+                if number //100 == 4 and number - 300 in pscolornumber: continue
+        noneighbours.append(number)
     return noneighbours
+
+
 
 def secondfilter(noneighbours, jokercounted,uniquenumbers):
     extendedneighbour = [i for i in noneighbours if i - 2 in uniquenumbers or i + 2 in uniquenumbers]
@@ -207,24 +200,21 @@ def makeallrowsnofunc(uniquenumbers, jokercounted):
                         allrows.append([i, 0, 0, 0, 0])
 
     return allrows,threetilerows
-
+"""
 def makeallrowsnofunc2(uniquenumbers, jokercounted):
     lsittemp = list(set(combinations(uniquenumbers, 3)))
     liste = []
     for i in lsittemp:
         liste.append(sorted(list(i)))
     filter(lambda i: not any(i[x] == 0 for x in range(3)), lsittemp)
-    filter(lambda i: i[1]-i[0] < 1 or any(i[1]-i[0] == l for l in [100,200,300]) or any(i[1]-i[0] == l for l in [1,2,3]) , lsittemp)
+    filter(lambda i: i[1]-i[0] < 1 or any(i[1]-i[0] == l for l in [100,200,300]) or any(i[1]-i[0] == l for l in [1,2,3]) , lsittemp)"""
 
 def filterzoveel(uniquenumbers,threetilerows):
     stillpossible = False
     uniquenumbersnojoker = uniquenumbers.copy()
-    if 0 in uniquenumbersnojoker:
-        uniquenumbersnojoker.remove(0)
+    if 0 in uniquenumbersnojoker: uniquenumbersnojoker.remove(0)
     for i in uniquenumbersnojoker:
         stillpossible = False
-        if i == 0:
-            continue
         for k in threetilerows:
             if not (i in k):
                 continue
@@ -234,3 +224,171 @@ def filterzoveel(uniquenumbers,threetilerows):
             break
     return stillpossible
 
+
+def filterzoveel11(uniquenumbers,threetilerows):
+    uniquenumbersnojoker = uniquenumbers.copy()
+    if 0 in uniquenumbersnojoker: uniquenumbersnojoker.remove(0)
+    for i in uniquenumbersnojoker:
+        stillpossible = False if not(any(i in k for k in threetilerows)) else True
+        if not stillpossible:
+            return False
+    return True
+
+
+def filterzoveel2(uniquenumbers,threetilerows):
+    uniquenumbersnojoker = uniquenumbers.copy()
+    if 0 in uniquenumbersnojoker: uniquenumbersnojoker.remove(0)
+    return False if any(not(any(i in k for k in threetilerows)) for i in uniquenumbers) else True
+
+
+
+def possiblewithrows(uniquenumbers, jokercounted):
+    allrows,threetilerows = [],[]
+    uniquenumbersnojoker = uniquenumbers.copy()
+    if 0 in uniquenumbersnojoker: uniquenumbersnojoker.remove(0)
+    if jokercounted > 0:
+        for i in uniquenumbersnojoker:
+            if i + 1 in uniquenumbersnojoker:
+                threetilerows.extend([i, i + 1])
+            if i + 2 in uniquenumbersnojoker:
+                threetilerows.extend([i, i + 2])
+            if i + 100 in uniquenumbersnojoker:
+                threetilerows.extend([i, i + 100])
+            if i + 200 in uniquenumbersnojoker:
+                threetilerows.extend([i, i + 200])
+            if i + 300 in uniquenumbersnojoker:
+                threetilerows.extend([i, i + 300])
+    else:
+        for i in uniquenumbersnojoker:
+            if all(i + x in uniquenumbersnojoker for x in [1,2]):
+                threetilerows.extend([i, i + 1, i + 2])
+            if i + 100 in uniquenumbersnojoker:
+                if i + 200 in uniquenumbersnojoker:
+                    threetilerows.extend([i, i + 100, i + 200])
+                if i + 300 in uniquenumbersnojoker:
+                    threetilerows.extend([i, i + 100, i + 300])
+            if i + 200 in uniquenumbersnojoker:
+                if i + 300 in uniquenumbersnojoker:
+                    threetilerows.extend([i, i + 200, i + 300])
+
+    list(set(threetilerows))
+    stillpossible = False
+    for p in uniquenumbersnojoker:
+        stillpossible = False
+        if p in threetilerows:
+            stillpossible = True
+        if not stillpossible:
+            return False,[]
+    if not stillpossible:
+        return False,[]
+
+
+
+    i = uniquenumbersnojoker[0]
+    if all(i + x in uniquenumbersnojoker for x in  [1,2,3]):
+        if i + 4 in uniquenumbersnojoker:
+            allrows.append([(i+x) for x in [0,1,2,3,4]])
+        allrows.append([(i+x) for x in [0,1,2,3]])
+
+    if all(i + x in uniquenumbersnojoker for x in  [100,200,300]):
+        allrows.append([(i+x) for x in [0,100,200,300]])
+    if all(i + x in uniquenumbersnojoker for x in  [1,2]):
+        allrows.append([i, i + 1, i + 2])
+    if i + 100 in uniquenumbersnojoker:
+        if i + 200 in uniquenumbersnojoker:
+            allrows.append([i, i + 100, i + 200])
+        if i + 300 in uniquenumbersnojoker:
+            allrows.append([i, i + 100, i + 300])
+    if i + 200 in uniquenumbersnojoker:
+        if i + 300 in uniquenumbersnojoker:
+            allrows.append([i, i + 200, i + 300])
+
+    if jokercounted > 0:
+        if i + 1 in uniquenumbersnojoker:
+            if i + 2 in uniquenumbersnojoker:
+                if i + 3 in uniquenumbersnojoker:
+                    allrows.append([i, i + 1, i + 2, i + 3, 0])
+                if i + 4 in uniquenumbersnojoker:
+                    allrows.append([i, i + 1, i + 2, 0, i + 4])
+            if all(i + x in uniquenumbersnojoker for x in [3,4]):
+                    allrows.append([i, i + 1, 0, i + 3, i + 4])
+        if all(i + x in uniquenumbersnojoker for x in  [2,3,4]):
+            allrows.append([i, 0, i + 2, i + 3, i + 4])
+        if i + 1 in uniquenumbersnojoker:
+            if i + 2 in uniquenumbersnojoker:
+                allrows.append([i, i + 1, i + 2, 0])
+            if i + 3 in uniquenumbersnojoker:
+                allrows.append([i, i + 1, 0, i + 3])
+        if all(i + x in uniquenumbersnojoker for x in [2,3]):
+                allrows.append([i, 0, i + 2, i + 3])
+        if i + 100 in uniquenumbersnojoker:
+            if i + 200 in uniquenumbersnojoker:
+                allrows.append([i, i + 100, i + 200, 0])
+            if i + 300 in uniquenumbersnojoker:
+                allrows.append([i, i + 100, 0, i + 300])
+        if all(i + x in uniquenumbersnojoker for x in [200,300]):
+                allrows.append([i, 0, i + 200, i + 300])
+        if i + 1 in uniquenumbersnojoker:
+            allrows.append([i, i + 1, 0])
+        if i + 2 in uniquenumbersnojoker:
+            allrows.append([i, 0, i + 2])
+        if i + 100 in uniquenumbersnojoker:
+            allrows.append([i, i + 100, 0])
+        if i + 200 in uniquenumbersnojoker:
+            allrows.append([i, 0, i + 200])
+        if i + 300 in uniquenumbersnojoker:
+            allrows.append([i, 0, i + 300])
+        if jokercounted > 1:
+            if i + 1 in uniquenumbersnojoker:
+                if i + 2 in uniquenumbersnojoker:
+                    allrows.append([i, i + 1, i + 2, 0, 0])
+                if i + 3 in uniquenumbersnojoker:
+                    allrows.append([i, i + 1, 0, i + 3, 0])
+                if i + 4 in uniquenumbersnojoker:
+                    allrows.append([i, i + 1, 0, 0, i + 4])
+            if i + 2 in uniquenumbersnojoker:
+                if i + 3 in uniquenumbersnojoker:
+                    allrows.append([i, 0, i + 2, i + 3, 0])
+                if i + 4 in uniquenumbersnojoker:
+                    allrows.append([i, 0, i + 2, 0, i + 4])
+            if all(i + x in uniquenumbersnojoker for x in [3,4]):
+                    allrows.append([i, 0, 0, i + 3, i + 4])
+            if i + 1 in uniquenumbersnojoker:
+                allrows.append([i, i + 1, 0, 0])
+            if i + 2 in uniquenumbersnojoker:
+                allrows.append([i, 0, i + 2, 0])
+            if i + 3 in uniquenumbersnojoker:
+                allrows.append([i, 0, 0, i + 3])
+            if i + 100 in uniquenumbersnojoker:
+                allrows.append([i, i + 100, 0, 0])
+            if i + 200 in uniquenumbersnojoker:
+                allrows.append([i, 0, i + 200, 0])
+            if i + 300 in uniquenumbersnojoker:
+                allrows.append([i, 0, 0, i + 300])
+            allrows.append([i, 0, 0])
+            if jokercounted > 2:
+                if i + 1 in uniquenumbersnojoker:
+                    allrows.append([i, i + 1, 0, 0, 0])
+                if i + 2 in uniquenumbersnojoker:
+                    allrows.append([i, 0, i + 2, 0, 0])
+                if i + 3 in uniquenumbersnojoker:
+                    allrows.append([i, 0, 0, i + 3, 0])
+                if i + 4 in uniquenumbersnojoker:
+                    allrows.append([i, 0, 0, 0, i + 4])
+                allrows.append([i, 0, 0, 0])
+                if jokercounted > 3:
+                    allrows.append([i, 0, 0, 0, 0])
+
+
+
+
+    confirmedpos = []  # alles is gechecked en is correct, dus deze kunnen
+    for i in allrows:
+        stopped = False
+        for k in range(len(i)):
+            if not (i[k] in uniquenumbersnojoker):
+                stopped = True
+                break
+        if not stopped:
+            confirmedpos.append(i)
+    return True,confirmedpos
