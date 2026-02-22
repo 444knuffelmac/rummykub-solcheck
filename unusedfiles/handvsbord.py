@@ -46,7 +46,7 @@ def mogelijkheden(inhand,outhand):
             afegdpad.truncate(0)
         print(continueing, solution, file=f)
         if not continueing:
-            allcombinationsinhand = everypossiblecombinationfinder.allpossiblecombinations(inhand)
+            allcombinationsinhand = everypossiblecombinationfinder.allpossiblecombinations3(inhand)
             allcombinations = []
             for combination in allcombinationsinhand:
                 temp2 = []

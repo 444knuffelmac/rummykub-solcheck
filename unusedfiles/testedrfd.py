@@ -1,4 +1,4 @@
-
+import time
 def onlyuniquenumbers(pscolornumber):
     uniquenumbers = []
     tempvalue = []
@@ -13,15 +13,10 @@ def onlyuniquenumbers(pscolornumber):
         tempvalue = []
 
     return uniquenumbers
-def sortstringly(pscolornumber):
-    pscolorstring = []
-    pscolornumber2 =[]
-    for x in range(len(pscolornumber)):
-        pscolorstring.append(str(pscolornumber[x])[::-1])
-    pscolorstring =sorted(pscolorstring)
-    for x in range(len(pscolorstring)):
-        pscolornumber2.append(int(pscolorstring[x]))
-    return pscolornumber2
+def sortstringly(pscolornumber:list):
+    ## sorted list of reverse ints
+    pscopy = [int(s) for s in sorted([str(s)[::-1] for s in pscolornumber])]
+    return pscopy
 
 
 
@@ -165,6 +160,9 @@ def neighbourless(uniquenumbers,withneighbourstype1,withneighbourstype2):
         if not((i in withneighbourstype1) or (i in withneighbourstype2)):
             noneighbours.append(i)
     return noneighbours
+
+
+
 def firstfilter(noneighbours,uniquenumbers):
     stillpossible = True
     if not 0 in uniquenumbers:
@@ -178,25 +176,18 @@ def extendedneighbours(uniquenumbers,jokercounted,noneighbours):
             if i - 2 in uniquenumbers or i+2 in uniquenumbers:
                 extendedneighbour.append(i)
     return extendedneighbour
-def secondfilter(noneighbours,extendedneighbour,jokercounted):
-    possible = True
-    if len(extendedneighbour) > (jokercounted*2)+1:
-        possible = False
+def secondfilter(noneighbours, extendedneighbour, jokercounted):
+    if len(extendedneighbour) > (jokercounted * 2) + 1:
+        return False
     elif jokercounted == 1:
         for i in noneighbours:
-            if i == 0:
-                continue
-            if i in extendedneighbour:
+            if i == 0 or i in extendedneighbour:
                 continue
             else:
-                possible = False
-                break
-    return possible
+                return False
+    return True
 def beginswith(matrixarray):
-    beginwaarden=[]
-    for i in range(len(matrixarray)):
-        beginwaarden.append(matrixarray[i][0])
-    return beginwaarden
+    return [i[0] for i in matrixarray]
 def mogelijkepaden(pad,rows,beginrows):
     # pad = de lijst van overgebleven nummers in dit pad
     # confirmedpos alle mogelijke rijen in dit pad
@@ -390,9 +381,7 @@ def finalcalculatorrecursive(piececolnumb):
     oplossing =[]
     mogelijkpaden = mogelijkepaden(piececolnumb,alltilerows,alltilerowsbegins)
     possible = False
-    with open('../finished/afgelegdpad.txt', 'a') as afgelegdpad:
-        print(mogelijkpaden,file=afgelegdpad)
-        print(len(mogelijkpaden),file=afgelegdpad)
+
     for i in mogelijkpaden:
         smallersize = piececolnumb.copy()
         for l in i:
@@ -404,6 +393,11 @@ def finalcalculatorrecursive(piececolnumb):
     return possible,oplossing
 
 #piecescolornumber = [101,102,103,104,105,105,106,107,108]
-
+piecescolornumber = [101,101,102,102,103,103,104,104,105,105,106,106,107,107,108,108,109,109,110,110,111,111,112,112,201,201,202,202,203,203,204,204,205,205,206,206,207,207,208,208,209,209,210,210,211,211,212,212,301,301,302,302,303,303,304,304,305,305,306,306,307,307,308,308,309,309,310,310,311,311,312,312,401,401,402,402,403,403,404,404,405,405,406,406,407,407,408,408,409,409,410,410,411,411,413,0]
+start = time.time()
+x = finalcalculatorrecursive(piecescolornumber)
+end = time.time()
+print(end-start)
+print(x)
 #[101,101,102,102,103,103,104,104,105,105,106,106,107,107,108,108,109,109,110,110,111,112,112,113,113,201,201,202,202,203,203,204,204,205,205,206,206,207,207,208,208,209,209,210,210,211,211,212,212,213,213,301,301,302,302,303,303,304,304,305,305,306,306,307,307,308,308,309,309,310,310,311,311,312,312,313,313,401,401,402,402,403,403,404,404,405,405,406,406,407,407,408,408,409,409,410,410,411,411,412,412,413,413,0,0,0,0,0,0,0,0]
 #print(generalfunctionsimportthis.finalcalculatorrecursive(piecescolornumber))

@@ -1,5 +1,5 @@
-#from itertools import combinations, chain
-
+import shelve
+from itertools import combinations,chain
 
 def whatvalueshaveneighboursbothtypes(pscolornumber):
     noneighbours = []
@@ -37,25 +37,23 @@ def secondfilter(noneighbours, jokercounted,uniquenumbers):
     return False if len(extendedneighbour) > (jokercounted * 2) + 1 or (jokercounted == 1 and any(i and not (i in extendedneighbour) for i in noneighbours)) else True
 
 def possiblewithrows(uniquenumbers, jokercounted):
-    allrows = []
-    threetilrowsnojokersnumber = uniquenumbers.copy()
-    if 0 in threetilrowsnojokersnumber: threetilrowsnojokersnumber.remove(0)
-    uniquenumbersnojoker = threetilrowsnojokersnumber.copy()
+
+    uniquenumbersnojoker = uniquenumbers.copy()
+    if 0 in uniquenumbersnojoker: uniquenumbersnojoker.remove(0)
     if jokercounted > 0:
 
         for i in uniquenumbersnojoker:#710 keer utigevoerd dus TE VEEL
 
-            if any(i+x in uniquenumbersnojoker for x in [1,2,100,200,300,-1,-2,-100,-200,-300]):
-                threetilrowsnojokersnumber.remove(i)
+            if not (any(i+x in uniquenumbersnojoker for x in [1,2,100,200,300,-1,-2,-100,-200,-300])):
+                return []
     else:
         for i in uniquenumbersnojoker:
-            if any(all(i + x in uniquenumbersnojoker for x in y) for y in
-                   [[1, 2], [100, 200], [100, 300], [200, 300], [-1, 1], [-2, -1], [-100, 100], [-100, 200],
-                    [-200, 100], [-300, -200], [-300, -100]]):
-                threetilrowsnojokersnumber.remove(i)
-    if threetilrowsnojokersnumber:
-        return []
+            if not (any(all(i + x in uniquenumbersnojoker for x in y) for y in
+                   [[1, 2], [100, 200], [100, 300], [200, 300], [-1, 1], [-2, -1], [-100, 100], [-100, 200],[-200, 100], [-300, -200], [-300, -100]])):
+                return []
 
+
+    allrows = []
     i = uniquenumbersnojoker[0]
     if all(i + x in uniquenumbersnojoker for x in  [1,2,3]):
         if i + 4 in uniquenumbersnojoker:
@@ -150,15 +148,51 @@ def possiblewithrows(uniquenumbers, jokercounted):
                 if jokercounted > 3:
                     allrows.append([i, 0, 0, 0, 0])
 
+    return allrows
 
 
-    confirmedpos = []  # alles is gechecked en is correct, dus deze kunnen
-    for i in allrows:
-        stopped = False
-        for k in range(len(i)):
-            if not (i[k] in uniquenumbersnojoker):
-                stopped = True
-                break
-        if not stopped:
-            confirmedpos.append(i)
-    return confirmedpos
+
+
+
+def allpossiblecombinations(numbers):
+    # powerset([1,2,3]) → () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)
+    return list(chain.from_iterable(set(combinations(numbers, r+2)) for r in range(len(numbers)-2)))
+
+def finalcalculatorrecursive(piececolnumb, memory):
+
+    if not piececolnumb: return True, []
+    if str(piececolnumb) in memory:
+        m = memory[str(piececolnumb)]
+        return m[0], m[1]
+    jokers = piececolnumb.count(0)
+
+    if jokers == len(piececolnumb):
+        returnvalue = [0]*jokers
+        return True, returnvalue
+
+    uniquenumbers = sorted(list(set(piececolnumb)))
+    neighbourlessnumbers = whatvalueshaveneighboursbothtypes(uniquenumbers)
+    if  not jokers and (len(neighbourlessnumbers) > 0):
+        return False, []
+
+    if not secondfilter(neighbourlessnumbers, jokers, uniquenumbers):
+        return False, []
+    possiblerows = possiblewithrows(uniquenumbers, jokers)
+    if not possiblerows:
+        return False, []
+    for i in possiblerows:
+        smallersize = piececolnumb.copy()
+
+        for l in i: smallersize.remove(l)
+        possible, oplossing = finalcalculatorrecursive(smallersize, memory)
+
+        if possible:
+            oplossing.append(i)
+            memory[str(piececolnumb)] = [True, oplossing.copy()]
+            return True, oplossing
+    return False, []
+
+
+def ispossible(piececolnumb):
+    with shelve.open('savefilefornewimport') as memorys:
+        return finalcalculatorrecursive(piececolnumb, memorys)
